@@ -8,6 +8,7 @@ import re
         app = Flask(__name__)
 
 def reply(message):
+    print("Replying to group")
     payload = {
         'bot_id' : os.environ['BOT_ID'],
         'text'   : message,
@@ -17,6 +18,7 @@ def reply(message):
 
 @app.route('/', methods=['POST'])
 def groupme_callback():
+    print("Got Connection...parsing:")
     json_body = request.get_json()
     if json_body['group_id'] == os.environ['GROUP_ID'] and json_body['sender_type'] != 'bot':
         # some degree of verification that it is sent via a groupme callback
@@ -25,6 +27,7 @@ def groupme_callback():
         message = json_body['text']
         ### BOT CODE GOES HERE! ###
         if re.compile("^/oddsbot [0-9]+$").match(message):
+                print("Message passes regex")
                 (_, maxval)
                 r1 = random.randrange(1,maxval)
                 r2 = random.randrange(1,maxval)
@@ -42,7 +45,8 @@ def groupme_callback():
                         else:
                                 response += "\nPhew!"
                 reply(response)
-
+        else:
+                print("Message doesn't match regex: {}".format(message))
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
