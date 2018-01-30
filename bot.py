@@ -5,7 +5,7 @@ import requests
 import re
 
 
-        app = Flask(__name__)
+app = Flask(__name__)
 
 def reply(message):
     print("Replying to group")
