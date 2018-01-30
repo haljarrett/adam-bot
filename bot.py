@@ -16,7 +16,7 @@ def reply(message):
     requests.post('https://api.groupme.com/v3/bots/post', json=payload)
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST','GET'])
 def groupme_callback():
     print("Got Connection...parsing:")
     json_body = request.get_json()
@@ -25,7 +25,6 @@ def groupme_callback():
         # could also check for "User-Agent: GroupMeBotNotifier/1.0", but that's plenty spoofable
 
         message = json_body['text']
-        ### BOT CODE GOES HERE! ###
         if re.compile("^/oddsbot [0-9]+$").match(message):
                 print("Message passes regex")
                 (_, maxval)
@@ -47,6 +46,8 @@ def groupme_callback():
                 reply(response)
         else:
                 print("Message doesn't match regex: {}".format(message))
+    else:
+        print("Not from groupme!")
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
