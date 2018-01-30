@@ -27,7 +27,7 @@ def groupme_callback():
         message = json_body['text']
         if re.compile("^/oddsbot [0-9]+$").match(message):
                 print("Message passes regex")
-                (_, maxval)
+                (myname, maxval)
                 r1 = random.randrange(1,maxval)
                 r2 = random.randrange(1,maxval)
                 r3 = random.randrange(1,maxval)
