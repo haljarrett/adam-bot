@@ -1,9 +1,7 @@
-# Oddsbot3000
-A really basic groupme bot that lets 2 users play odds in a way that is neither interactive nor elegant.
+# Adam Bot
 
-Called with `/oddsbot [odds]` in the installed chat.
+A bot that responds with the "Adam" vine whenever someone says "Adam" or Adam says anything
 
 Oh god what am i doing with my life
-
 
 Deployed to Heroku, requires env variables BOT_ID and GROUP_ID to be set.

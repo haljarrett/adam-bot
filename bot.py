@@ -25,28 +25,11 @@ def groupme_callback():
         # could also check for "User-Agent: GroupMeBotNotifier/1.0", but that's plenty spoofable
 
         message = json_body['text']
-        if re.compile("^/oddsbot [1-9][0-9]*$").match(message):
-                print("Message passes regex")
-                (myname, maxval) = message.split(" ")
-                maxval = int(maxval) + 1
-                r1 = random.randrange(1,maxval)
-                r2 = random.randrange(1,maxval)
-                r3 = random.randrange(1,maxval)
-                r4 = random.randrange(1,maxval)
-                response = "3, 2, 1...{}! {}!".format(r1,r2)
-                if r1 == r2:
-                        #case where you lose
-                        response += "\nYou Lose!"
-                else:
-                        response += "\nThrowback: 3, 2, 1...{}! {}!".format(r3,r4)
-                        if r3 == r4:
-                                #case where they lose
-                                response += "\nThey Lose!"
-                        else:
-                                response += "\nPhew!"
+        if "adam" in message.lower().split():
+                print("Adam found!")
                 reply(response)
         else:
-                print("Message doesn't match regex: {}".format(message))
+                print("Adam Not Found in: {}".format(message))
     else:
         print("Not from groupme!")
     return "ok", 200
