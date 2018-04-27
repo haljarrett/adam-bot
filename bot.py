@@ -7,7 +7,7 @@ import time
 
 app = Flask(__name__)
 
-lastTime = 0
+lastTime = -3600
 
 def reply(message):
     print("Replying to group")
