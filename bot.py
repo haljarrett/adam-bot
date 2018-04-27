@@ -25,7 +25,7 @@ def groupme_callback():
         # could also check for "User-Agent: GroupMeBotNotifier/1.0", but that's plenty spoofable
 
         message = json_body['text']
-        if "adam" in message.lower().split():
+        if any(adam in message.lower().split() for adam in ["adam", "@adam"]:
                 print("Adam found!")
                 reply("Adam!")
         else:
