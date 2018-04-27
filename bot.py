@@ -26,6 +26,7 @@ def reply(message):
 
 @app.route('/', methods=['POST','GET'])
 def groupme_callback():
+    global lastTime
     print("Got Connection...parsing:")
     json_body = request.get_json()
     if json_body['group_id'] == os.environ['GROUP_ID'] and json_body['sender_type'] != 'bot':
