@@ -27,7 +27,7 @@ def groupme_callback():
         message = json_body['text']
         if any(adam in message.lower().split() for adam in ["adam", "@adam"]):
                 print("Adam found!")
-                reply("Adam!")
+                reply("Adam! https://gfycat.com/gifs/detail/HorribleEcstaticCuckoo")
         else:
                 print("Adam Not Found in: {}".format(message))
     else:
