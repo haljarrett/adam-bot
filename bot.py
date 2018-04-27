@@ -10,8 +10,14 @@ app = Flask(__name__)
 def reply(message):
     print("Replying to group")
     payload = {
-        'bot_id' : os.environ['BOT_ID'],
-        'text'   : message,
+        'bot_id'      : os.environ['BOT_ID'],
+        'text'        : message,
+        'attachments' : [
+                {
+                        'type' : 'image',
+                        'url'  : 'https://i.groupme.com/368x368.gif.0ddac4592b7840ca9bc78adf619ac928'
+                        }
+                ]
     }
     requests.post('https://api.groupme.com/v3/bots/post', json=payload)
 
@@ -27,7 +33,7 @@ def groupme_callback():
         message = json_body['text']
         if any(adam in message.lower().split() for adam in ["adam", "@adam"]):
                 print("Adam found!")
-                reply("Adam! https://thumbs.gfycat.com/HorribleEcstaticCuckoo-size_restricted.gif")
+                reply("Adam!")
         else:
                 print("Adam Not Found in: {}".format(message))
     else:
