@@ -3,9 +3,11 @@ import random
 from flask import Flask, json, request
 import requests
 import re
-
+import time
 
 app = Flask(__name__)
+
+lastTime = 0
 
 def reply(message):
     print("Replying to group")
@@ -31,8 +33,8 @@ def groupme_callback():
         # could also check for "User-Agent: GroupMeBotNotifier/1.0", but that's plenty spoofable
 
         message = json_body['text']
-        i = random.randint(0,3)
-        if any(adam in message.lower().split() + json_body['name'].lower().split() for adam in ["adam", "@adam"]) and i == 2:
+        if any(adam in message.lower().split() + json_body['name'].lower().split() for adam in ["adam", "@adam"]) and time.clock() - lastTime > 3600:
+                lastTime = time.clock()
                 print("Adam found!")
                 reply("Adam!")
         else:
